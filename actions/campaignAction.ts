@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import {cons} from "effect/List";
 
 export async function fetchActiveCampaigns() {
     try {

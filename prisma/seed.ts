@@ -27,39 +27,59 @@ export async function main() {
     await prisma.campaign.deleteMany();
 
     const adminRole = await prisma.role.create({
-        data:{desc:"many access" , name:"admin" },
+        data:{desc:"many access" , name:"admin"},
     })
 
     const userRole = await prisma.role.create({
         data:{desc:"normal user" , name:"user" },
     })
 
-    const category= await prisma.category.create({
-        data:{desc:"laptop , pc , mobile , ..." , name:"digital" },
+    const mobileCategory= await prisma.category.create({
+        data:{desc:"phone" , name:"Phones" , iconURL:"/icons/mobile_category_icon.svg"},
+    })
+
+    const smartWatchCategory = await prisma.category.create({
+        data:{desc:"" , name:"SmartWatch" , iconURL:"/icons/smartwatch_category_icon.svg"},
+    })
+
+    const cameraCategory = await prisma.category.create({
+        data:{desc:"" , name:"Camera" , iconURL:"/icons/camera_category_icon.svg"},
+    })
+
+    const computersCategory = await prisma.category.create({
+        data:{desc:"" , name:"Computers" , iconURL:"/icons/computer_category_icon.svg"},
+    })
+
+    const gamingCategory = await prisma.category.create({
+        data:{desc:"" , name:"Gaming" , iconURL:"/icons/gaming_category_icon.svg"},
+    })
+
+    const headPhonesCategory = await prisma.category.create({
+        data:{desc:"" , name:"HeadPhones" , iconURL:"/icons/headphone_category_icon.svg"},
     })
 
     const product1 = await prisma.product.create({
-        data:{name:"tuf gaming" , color:Color.red , categoryId:category.id , size:Size.Xlarge, price:506.45 , ImageURL:"/image/tug-gaming.png"}
+        data:{name:"tuf gaming" , color:Color.red , categoryId:computersCategory.id , size:Size.Xlarge, price:506.45 , ImageURL:"/image/tug-gaming.png"}
     })
 
     const product2 = await prisma.product.create({
-        data:{name:"iphone 14" , price: 400.45 , categoryId:category.id , ImageURL:"/image/apple-phone.png"}
+        data:{name:"iphone 14" , price: 400.45 , categoryId:mobileCategory.id , ImageURL:"/image/apple-phone.png"}
     })
 
     const product3 = await prisma.product.create({
-        data:{name:"S24 fe" , price: 268.45 , categoryId:category.id , ImageURL:"/image/samsung-phone.png"}
+        data:{name:"S24 fe" , price: 268.45 , categoryId:mobileCategory.id , ImageURL:"/image/samsung-phone.png"}
     })
 
     const product4 = await prisma.product.create({
-        data:{name:"tab s10" , price:358 , categoryId:category.id , ImageURL:"/image/tab-s10.png"}
+        data:{name:"tab s10" , price:358 , categoryId:gamingCategory.id , ImageURL:"/image/tab-s10.png"}
     })
 
     const product5 = await prisma.product.create({
-        data:{name:"surface" , price:384 , categoryId:category.id , ImageURL:"/image/surface.png"}
+        data:{name:"surface" , price:384 , categoryId:gamingCategory.id , ImageURL:"/image/surface.png"}
     })
 
     const product6 = await prisma.product.create({
-        data:{name:"rtx 5060 i5 14600k pc" , price:600 , categoryId:category.id , ImageURL:"/image/pc.png"}
+        data:{name:"rtx 5060 i5 14600k pc" , price:600 , categoryId:computersCategory.id , ImageURL:"/image/pc.png"}
     })
 
     await prisma.member.create({

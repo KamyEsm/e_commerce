@@ -7,30 +7,30 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
-import {ActiveCampaignType} from "@/app/page"
-
-type ProductOnCampaignType = ActiveCampaignType["productsOnCampaigns"][number]
 
 
-export function ShopCarousel({title , activeCampaign , renderFunction}:{title:React.ReactNode , activeCampaign:ActiveCampaignType | null , renderFunction: (item: ProductOnCampaignType) => React.ReactNode;}) {
+export function ShopCarousel<T>({title , dataList , renderFunction , className , children}:{title:React.ReactNode , dataList:Array<T> | null | undefined, renderFunction: (item: T) => React.ReactNode,className:string,children?:React.ReactNode}) {
 
-    if(!activeCampaign){
-        return <div className="text-center p-4">There are no campaigns to display.</div>;
+    if(!dataList || dataList.length < 1){
+        return <div className="text-center p-4">There are no data to display.</div>;
     }
 
     return (
         <div>
             {title}
-            <Carousel className="w-full">
+            <Carousel className="w-full" opts={{
+                dragFree: true,
+                align: "start",
+                containScroll: "trimSnaps"
+            }}>
                 <CarouselContent>
-                    {activeCampaign.productsOnCampaigns.map((campaign,index) => (
+                    {dataList.map((item,index) => (
                         <CarouselItem key={index}
-                                      className="pl-4 basis-[82%]">
+                                      className={`pl-4 ${className}`}>
 
                             {
-                                renderFunction(campaign)
+                                renderFunction(item)
                             }
                         </CarouselItem>
                     ))}
@@ -38,9 +38,7 @@ export function ShopCarousel({title , activeCampaign , renderFunction}:{title:Re
                 <CarouselPrevious className="hidden" />
                 <CarouselNext className="hidden" />
             </Carousel>
-            <div className="w-full h-auto flex items-center justify-center my-12">
-                <Link href="/" className="bg-[#DB4444] text-white py-3.5 px-6 rounded">View All Products</Link>
-            </div>
+            {children}
         </div>
 
     )
