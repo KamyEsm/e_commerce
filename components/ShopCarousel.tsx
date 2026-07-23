@@ -28,7 +28,6 @@ export function ShopCarousel<T>({title , dataList , renderFunction , className ,
                     {dataList.map((item,index) => (
                         <CarouselItem key={index}
                                       className={`pl-4 ${className}`}>
-
                             {
                                 renderFunction(item)
                             }

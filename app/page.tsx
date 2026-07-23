@@ -43,7 +43,26 @@ export default async function Home() {
     return (
         <main className="">
             <Header/>
-            <HeroCarousel/>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 lg:my-8">
+                <aside className="hidden lg:block border-r border-gray-300 mr-8">
+                    <ul className="flex flex-col justify-between h-full">
+                        <li>Woman’s Fashion</li>
+                        <li>Men’s Fashion</li>
+                        <li>Electronics</li>
+                        <li>Home & Lifestyle</li>
+                        <li>Medicine</li>
+                        <li>Sports & Outdoor</li>
+                        <li>Baby’s & Toys</li>
+                        <li>Groceries & Pets</li>
+                        <li>Health & Beauty</li>
+                    </ul>
+                </aside>
+                <div className="col-span-3">
+                    <HeroCarousel/>
+                </div>
+            </div>
+
             <ShopCarousel title={
                 <>
                     <SectionTag title={"Today's"}/>
@@ -57,7 +76,7 @@ export default async function Home() {
                     <ProductCard productName={item.product.name} price={item.product.price}
                                  discount={item.discountRate} imageUrl={item.product.ImageURL || "/image/no-image.png"} />
                 </div>
-            )} className={"basis-[82%]"}>
+            )} className={"basis-[82%] sm:basis-[50%] md:basis-[35%] lg:basis-[28%] xl:basis-[20%]"}>
                 <div className="w-full h-auto flex items-center justify-center my-12">
                     <Link href="/" className="bg-[#DB4444] text-white py-3.5 px-6 rounded">View All Products</Link>
                 </div>
@@ -67,11 +86,12 @@ export default async function Home() {
             <ShopCarousel title={
                 <>
                     <SectionTag title={"Categories"}/>
-                    <h2 className="font-bold ml-4 my-6 text-2xl ">{"Browse By Category"}</h2>
+                    <h2 className="font-bold ml-4 my-6 ">{"Browse By Category"}</h2>
                 </>
             } dataList={categoryList} renderFunction={(item:categoryListType) => (
-                <CategoryCard categoryName={item.name} iconURL={item.iconURL} categoryLink={"/"}/>
-            )} className={"basis-[40%]"}/>
+                <CategoryCard categoryName = {item.name} iconURL = {item.iconURL} categoryLink = {"/"}/>
+            )} className={"basis-[42%] sm:basis-[28%] md:basis-[20%] lg:basis-[16%]"}/>
+            <hr className="w-full border-t border-gray-200 my-16"/>
 
         </main>
     );
