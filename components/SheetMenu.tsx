@@ -9,6 +9,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from "next/link";
+import NavbarLinks from "@/components/NavbarLinks";
 
 export function SheetMenu() {
     return (
@@ -22,32 +23,7 @@ export function SheetMenu() {
                     <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
 
-                <div className="grid flex-1 auto-rows-min gap-6 px-4 mt-6">
-                    <div className="grid gap-3">
-                        <Link href={"/"} className="hover:underline">
-                            <h1 className="text-lg font-medium">Home</h1>
-                        </Link>
-                        <hr />
-                    </div>
-                    <div className="grid gap-3">
-                        <Link href={"/contact"} className="hover:underline">
-                            <h1 className="text-lg font-medium">Contact</h1>
-                        </Link>
-                        <hr />
-                    </div>
-                    <div className="grid gap-3">
-                        <Link href={"/about"} className="hover:underline">
-                            <h1 className="text-lg font-medium">About Us</h1>
-                        </Link>
-                        <hr />
-                    </div>
-                    <div className="grid gap-3">
-                        <Link href={"/sign-up"} className="hover:underline">
-                            <h1 className="text-lg font-medium">Sign Up</h1>
-                        </Link>
-                        <hr />
-                    </div>
-                </div>
+                <NavbarLinks />
             </SheetContent>
         </Sheet>
     )

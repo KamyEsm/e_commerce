@@ -41,7 +41,7 @@ export default async function Home() {
     const categoryList : Array<categoryListType> = categories?.data ?? [];
 
     return (
-        <main className="">
+        <main className="min-h-full flex flex-col font-serif mx-8">
             <Header/>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 lg:my-8">
