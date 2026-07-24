@@ -41,9 +41,7 @@ export default async function Home() {
     const categoryList : Array<categoryListType> = categories?.data ?? [];
 
     return (
-        <main className="min-h-full flex flex-col font-serif mx-8">
-            <Header/>
-
+        <div className="min-h-full flex flex-col font-serif mx-16">
             <div className="grid grid-cols-1 lg:grid-cols-4 lg:my-8">
                 <aside className="hidden lg:block border-r border-gray-300 mr-8">
                     <ul className="flex flex-col justify-between h-full">
@@ -93,6 +91,6 @@ export default async function Home() {
             )} className={"basis-[42%] sm:basis-[28%] md:basis-[20%] lg:basis-[16%]"}/>
             <hr className="w-full border-t border-gray-200 my-16"/>
 
-        </main>
+        </div>
     );
 }

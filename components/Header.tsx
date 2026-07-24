@@ -9,7 +9,7 @@ import NavbarLinks from "@/components/NavbarLinks";
 export default function Header(){
 
     return (
-        <header className="sticky flex flex-col w-full top-0 right-0 z-10 bg-white mt-4 lg:sticky lg:flex lg:flex-row ">
+        <header className="sticky flex flex-col w-full top-0 right-0 z-10 bg-white mt-4 lg:sticky lg:flex lg:flex-row lg:px-16 lg:py-4 lg:mt-0">
             <div className="flex flex-row items-center justify-between lg:flex lg:gap-16 lg:w-full lg:flex-row lg:justify-between">
                 <nav className="lg:hidden">
                     <SheetMenu/>
@@ -20,7 +20,6 @@ export default function Header(){
                 <nav className="hidden md:hidden lg:w-auto lg:flex lg:flex-row lg:items-center">
                     <NavbarLinks />
                 </nav>
-                <div className="hidden lg:flex lg:flex-row lg:justify-between lg:gap-2.5">
                     <div className="hidden lg:flex lg:flex-row lg:gap-16 lg:relative lg:w-48 ">
                         <Input className="lg:border-none lg:bg-gray-200 lg:rounded"/>
                         <IoSearchOutline className="lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-2"/>
@@ -33,8 +32,6 @@ export default function Header(){
                             <PiShoppingCartLight className="h-5 w-5"/>
                         </Link>
                     </nav>
-                </div>
-
             </div>
             <div className="relative m-4 flex flex-row items-center justify-between lg:hidden">
                 <Input className="border-none bg-gray-200 rounded"/>
