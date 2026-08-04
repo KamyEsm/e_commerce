@@ -1,0 +1,12 @@
+-- AlterTable
+ALTER TABLE "Category" ALTER COLUMN "desc" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Member" ALTER COLUMN "Email" DROP NOT NULL,
+ALTER COLUMN "Address" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "size" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Role" ALTER COLUMN "desc" DROP NOT NULL;

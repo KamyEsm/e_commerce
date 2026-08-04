@@ -84,11 +84,10 @@ export async function main() {
 
     await prisma.member.create({
         data: {
-            firstname: "kamyar",
-            lastname: "esmaeilpourl",
-            Email: "kamy@example.com",
+            name: "kamyar esmaeilpour",
+            email: "kamy@example.com",
             Address: "تهران، خیابان آزادی",
-            hasshedPass: "hashed_password_123",
+            hashedPass: "hashed_password_123",
             roles: {
                 create: [
                     { roleId: adminRole.id },
@@ -108,11 +107,10 @@ export async function main() {
 
     await prisma.member.create({
         data: {
-            firstname: "shiva",
-            lastname: "palangi",
-            Email: "shiva@example.com",
+            name: "shiva palangi",
+            email: "shiva@example.com",
             Address: "شیراز، بلوار ارم",
-            hasshedPass: "hashed_password_456",
+            hashedPass: "hashed_password_456",
             roles: {
                 create: [
                     { roleId: userRole.id }

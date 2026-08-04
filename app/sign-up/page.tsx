@@ -1,10 +1,9 @@
+import SignUp from "@/components/SignUp";
 
 
 export default function Page(){
 
     return (
-        <div>
-
-        </div>
+        <SignUp/>
     )
 }

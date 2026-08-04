@@ -36,29 +36,35 @@ export type MemberSumAggregateOutputType = {
 
 export type MemberMinAggregateOutputType = {
   id: number | null
-  firstname: string | null
-  lastname: string | null
-  Email: string | null
+  name: string | null
+  phonenumber: string | null
+  email: string | null
   Address: string | null
-  hasshedPass: string | null
+  hashedPass: string | null
+  phoneNumberVerification: boolean | null
+  emailVerification: boolean | null
 }
 
 export type MemberMaxAggregateOutputType = {
   id: number | null
-  firstname: string | null
-  lastname: string | null
-  Email: string | null
+  name: string | null
+  phonenumber: string | null
+  email: string | null
   Address: string | null
-  hasshedPass: string | null
+  hashedPass: string | null
+  phoneNumberVerification: boolean | null
+  emailVerification: boolean | null
 }
 
 export type MemberCountAggregateOutputType = {
   id: number
-  firstname: number
-  lastname: number
-  Email: number
+  name: number
+  phonenumber: number
+  email: number
   Address: number
-  hasshedPass: number
+  hashedPass: number
+  phoneNumberVerification: number
+  emailVerification: number
   _all: number
 }
 
@@ -73,29 +79,35 @@ export type MemberSumAggregateInputType = {
 
 export type MemberMinAggregateInputType = {
   id?: true
-  firstname?: true
-  lastname?: true
-  Email?: true
+  name?: true
+  phonenumber?: true
+  email?: true
   Address?: true
-  hasshedPass?: true
+  hashedPass?: true
+  phoneNumberVerification?: true
+  emailVerification?: true
 }
 
 export type MemberMaxAggregateInputType = {
   id?: true
-  firstname?: true
-  lastname?: true
-  Email?: true
+  name?: true
+  phonenumber?: true
+  email?: true
   Address?: true
-  hasshedPass?: true
+  hashedPass?: true
+  phoneNumberVerification?: true
+  emailVerification?: true
 }
 
 export type MemberCountAggregateInputType = {
   id?: true
-  firstname?: true
-  lastname?: true
-  Email?: true
+  name?: true
+  phonenumber?: true
+  email?: true
   Address?: true
-  hasshedPass?: true
+  hashedPass?: true
+  phoneNumberVerification?: true
+  emailVerification?: true
   _all?: true
 }
 
@@ -187,11 +199,13 @@ export type MemberGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type MemberGroupByOutputType = {
   id: number
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name: string | null
+  phonenumber: string | null
+  email: string | null
+  Address: string | null
+  hashedPass: string
+  phoneNumberVerification: boolean
+  emailVerification: boolean
   _count: MemberCountAggregateOutputType | null
   _avg: MemberAvgAggregateOutputType | null
   _sum: MemberSumAggregateOutputType | null
@@ -219,47 +233,55 @@ export type MemberWhereInput = {
   OR?: Prisma.MemberWhereInput[]
   NOT?: Prisma.MemberWhereInput | Prisma.MemberWhereInput[]
   id?: Prisma.IntFilter<"Member"> | number
-  firstname?: Prisma.StringFilter<"Member"> | string
-  lastname?: Prisma.StringFilter<"Member"> | string
-  Email?: Prisma.StringFilter<"Member"> | string
-  Address?: Prisma.StringFilter<"Member"> | string
-  hasshedPass?: Prisma.StringFilter<"Member"> | string
+  name?: Prisma.StringNullableFilter<"Member"> | string | null
+  phonenumber?: Prisma.StringNullableFilter<"Member"> | string | null
+  email?: Prisma.StringNullableFilter<"Member"> | string | null
+  Address?: Prisma.StringNullableFilter<"Member"> | string | null
+  hashedPass?: Prisma.StringFilter<"Member"> | string
+  phoneNumberVerification?: Prisma.BoolFilter<"Member"> | boolean
+  emailVerification?: Prisma.BoolFilter<"Member"> | boolean
   roles?: Prisma.RoleOnMemberListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  Email?: Prisma.SortOrder
-  Address?: Prisma.SortOrder
-  hasshedPass?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  phonenumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  Address?: Prisma.SortOrderInput | Prisma.SortOrder
+  hashedPass?: Prisma.SortOrder
+  phoneNumberVerification?: Prisma.SortOrder
+  emailVerification?: Prisma.SortOrder
   roles?: Prisma.RoleOnMemberOrderByRelationAggregateInput
   favorites?: Prisma.FavoriteOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  Email?: string
+  email?: string
   AND?: Prisma.MemberWhereInput | Prisma.MemberWhereInput[]
   OR?: Prisma.MemberWhereInput[]
   NOT?: Prisma.MemberWhereInput | Prisma.MemberWhereInput[]
-  firstname?: Prisma.StringFilter<"Member"> | string
-  lastname?: Prisma.StringFilter<"Member"> | string
-  Address?: Prisma.StringFilter<"Member"> | string
-  hasshedPass?: Prisma.StringFilter<"Member"> | string
+  name?: Prisma.StringNullableFilter<"Member"> | string | null
+  phonenumber?: Prisma.StringNullableFilter<"Member"> | string | null
+  Address?: Prisma.StringNullableFilter<"Member"> | string | null
+  hashedPass?: Prisma.StringFilter<"Member"> | string
+  phoneNumberVerification?: Prisma.BoolFilter<"Member"> | boolean
+  emailVerification?: Prisma.BoolFilter<"Member"> | boolean
   roles?: Prisma.RoleOnMemberListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
-}, "id" | "Email">
+}, "id" | "email">
 
 export type MemberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  Email?: Prisma.SortOrder
-  Address?: Prisma.SortOrder
-  hasshedPass?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  phonenumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  Address?: Prisma.SortOrderInput | Prisma.SortOrder
+  hashedPass?: Prisma.SortOrder
+  phoneNumberVerification?: Prisma.SortOrder
+  emailVerification?: Prisma.SortOrder
   _count?: Prisma.MemberCountOrderByAggregateInput
   _avg?: Prisma.MemberAvgOrderByAggregateInput
   _max?: Prisma.MemberMaxOrderByAggregateInput
@@ -272,88 +294,106 @@ export type MemberScalarWhereWithAggregatesInput = {
   OR?: Prisma.MemberScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MemberScalarWhereWithAggregatesInput | Prisma.MemberScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Member"> | number
-  firstname?: Prisma.StringWithAggregatesFilter<"Member"> | string
-  lastname?: Prisma.StringWithAggregatesFilter<"Member"> | string
-  Email?: Prisma.StringWithAggregatesFilter<"Member"> | string
-  Address?: Prisma.StringWithAggregatesFilter<"Member"> | string
-  hasshedPass?: Prisma.StringWithAggregatesFilter<"Member"> | string
+  name?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  phonenumber?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  Address?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  hashedPass?: Prisma.StringWithAggregatesFilter<"Member"> | string
+  phoneNumberVerification?: Prisma.BoolWithAggregatesFilter<"Member"> | boolean
+  emailVerification?: Prisma.BoolWithAggregatesFilter<"Member"> | boolean
 }
 
 export type MemberCreateInput = {
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   roles?: Prisma.RoleOnMemberCreateNestedManyWithoutMemberInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateInput = {
   id?: number
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   roles?: Prisma.RoleOnMemberUncheckedCreateNestedManyWithoutMemberInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUpdateInput = {
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roles?: Prisma.RoleOnMemberUpdateManyWithoutMemberNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roles?: Prisma.RoleOnMemberUncheckedUpdateManyWithoutMemberNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateManyInput = {
   id?: number
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
 }
 
 export type MemberUpdateManyMutationInput = {
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type MemberUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type MemberCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  Email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phonenumber?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   Address?: Prisma.SortOrder
-  hasshedPass?: Prisma.SortOrder
+  hashedPass?: Prisma.SortOrder
+  phoneNumberVerification?: Prisma.SortOrder
+  emailVerification?: Prisma.SortOrder
 }
 
 export type MemberAvgOrderByAggregateInput = {
@@ -362,20 +402,24 @@ export type MemberAvgOrderByAggregateInput = {
 
 export type MemberMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  Email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phonenumber?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   Address?: Prisma.SortOrder
-  hasshedPass?: Prisma.SortOrder
+  hashedPass?: Prisma.SortOrder
+  phoneNumberVerification?: Prisma.SortOrder
+  emailVerification?: Prisma.SortOrder
 }
 
 export type MemberMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  Email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phonenumber?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   Address?: Prisma.SortOrder
-  hasshedPass?: Prisma.SortOrder
+  hashedPass?: Prisma.SortOrder
+  phoneNumberVerification?: Prisma.SortOrder
+  emailVerification?: Prisma.SortOrder
 }
 
 export type MemberSumOrderByAggregateInput = {
@@ -387,8 +431,16 @@ export type MemberScalarRelationFilter = {
   isNot?: Prisma.MemberWhereInput
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -428,21 +480,25 @@ export type MemberUpdateOneRequiredWithoutFavoritesNestedInput = {
 }
 
 export type MemberCreateWithoutRolesInput = {
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   favorites?: Prisma.FavoriteCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutRolesInput = {
   id?: number
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -463,40 +519,48 @@ export type MemberUpdateToOneWithWhereWithoutRolesInput = {
 }
 
 export type MemberUpdateWithoutRolesInput = {
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.FavoriteUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutRolesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutFavoritesInput = {
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   roles?: Prisma.RoleOnMemberCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutFavoritesInput = {
   id?: number
-  firstname: string
-  lastname: string
-  Email: string
-  Address: string
-  hasshedPass: string
+  name?: string | null
+  phonenumber?: string | null
+  email?: string | null
+  Address?: string | null
+  hashedPass: string
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   roles?: Prisma.RoleOnMemberUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -517,21 +581,25 @@ export type MemberUpdateToOneWithWhereWithoutFavoritesInput = {
 }
 
 export type MemberUpdateWithoutFavoritesInput = {
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roles?: Prisma.RoleOnMemberUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutFavoritesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  Email?: Prisma.StringFieldUpdateOperationsInput | string
-  Address?: Prisma.StringFieldUpdateOperationsInput | string
-  hasshedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phonenumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashedPass?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumberVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roles?: Prisma.RoleOnMemberUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -577,11 +645,13 @@ export type MemberCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Type
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  Email?: boolean
+  name?: boolean
+  phonenumber?: boolean
+  email?: boolean
   Address?: boolean
-  hasshedPass?: boolean
+  hashedPass?: boolean
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
   roles?: boolean | Prisma.Member$rolesArgs<ExtArgs>
   favorites?: boolean | Prisma.Member$favoritesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
@@ -589,32 +659,38 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 
 export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  Email?: boolean
+  name?: boolean
+  phonenumber?: boolean
+  email?: boolean
   Address?: boolean
-  hasshedPass?: boolean
+  hashedPass?: boolean
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  Email?: boolean
+  name?: boolean
+  phonenumber?: boolean
+  email?: boolean
   Address?: boolean
-  hasshedPass?: boolean
+  hashedPass?: boolean
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectScalar = {
   id?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  Email?: boolean
+  name?: boolean
+  phonenumber?: boolean
+  email?: boolean
   Address?: boolean
-  hasshedPass?: boolean
+  hashedPass?: boolean
+  phoneNumberVerification?: boolean
+  emailVerification?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstname" | "lastname" | "Email" | "Address" | "hasshedPass", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phonenumber" | "email" | "Address" | "hashedPass" | "phoneNumberVerification" | "emailVerification", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roles?: boolean | Prisma.Member$rolesArgs<ExtArgs>
   favorites?: boolean | Prisma.Member$favoritesArgs<ExtArgs>
@@ -631,11 +707,13 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    firstname: string
-    lastname: string
-    Email: string
-    Address: string
-    hasshedPass: string
+    name: string | null
+    phonenumber: string | null
+    email: string | null
+    Address: string | null
+    hashedPass: string
+    phoneNumberVerification: boolean
+    emailVerification: boolean
   }, ExtArgs["result"]["member"]>
   composites: {}
 }
@@ -1062,11 +1140,13 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface MemberFieldRefs {
   readonly id: Prisma.FieldRef<"Member", 'Int'>
-  readonly firstname: Prisma.FieldRef<"Member", 'String'>
-  readonly lastname: Prisma.FieldRef<"Member", 'String'>
-  readonly Email: Prisma.FieldRef<"Member", 'String'>
+  readonly name: Prisma.FieldRef<"Member", 'String'>
+  readonly phonenumber: Prisma.FieldRef<"Member", 'String'>
+  readonly email: Prisma.FieldRef<"Member", 'String'>
   readonly Address: Prisma.FieldRef<"Member", 'String'>
-  readonly hasshedPass: Prisma.FieldRef<"Member", 'String'>
+  readonly hashedPass: Prisma.FieldRef<"Member", 'String'>
+  readonly phoneNumberVerification: Prisma.FieldRef<"Member", 'Boolean'>
+  readonly emailVerification: Prisma.FieldRef<"Member", 'Boolean'>
 }
     
 

@@ -204,7 +204,7 @@ export type ProductGroupByOutputType = {
   name: string
   ImageURL: string | null
   price: number
-  size: $Enums.Size
+  size: $Enums.Size | null
   color: $Enums.Color
   categoryId: number
   _count: ProductCountAggregateOutputType | null
@@ -237,7 +237,7 @@ export type ProductWhereInput = {
   name?: Prisma.StringFilter<"Product"> | string
   ImageURL?: Prisma.StringNullableFilter<"Product"> | string | null
   price?: Prisma.FloatFilter<"Product"> | number
-  size?: Prisma.EnumSizeFilter<"Product"> | $Enums.Size
+  size?: Prisma.EnumSizeNullableFilter<"Product"> | $Enums.Size | null
   color?: Prisma.EnumColorFilter<"Product"> | $Enums.Color
   categoryId?: Prisma.IntFilter<"Product"> | number
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
@@ -251,7 +251,7 @@ export type ProductOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   ImageURL?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrder
-  size?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   category?: Prisma.CategoryOrderByWithRelationInput
@@ -268,7 +268,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Product"> | string
   ImageURL?: Prisma.StringNullableFilter<"Product"> | string | null
   price?: Prisma.FloatFilter<"Product"> | number
-  size?: Prisma.EnumSizeFilter<"Product"> | $Enums.Size
+  size?: Prisma.EnumSizeNullableFilter<"Product"> | $Enums.Size | null
   color?: Prisma.EnumColorFilter<"Product"> | $Enums.Color
   categoryId?: Prisma.IntFilter<"Product"> | number
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
@@ -282,7 +282,7 @@ export type ProductOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   ImageURL?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrder
-  size?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
   color?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
@@ -300,7 +300,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Product"> | string
   ImageURL?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   price?: Prisma.FloatWithAggregatesFilter<"Product"> | number
-  size?: Prisma.EnumSizeWithAggregatesFilter<"Product"> | $Enums.Size
+  size?: Prisma.EnumSizeNullableWithAggregatesFilter<"Product"> | $Enums.Size | null
   color?: Prisma.EnumColorWithAggregatesFilter<"Product"> | $Enums.Color
   categoryId?: Prisma.IntWithAggregatesFilter<"Product"> | number
 }
@@ -309,7 +309,7 @@ export type ProductCreateInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
@@ -322,7 +322,7 @@ export type ProductUncheckedCreateInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   categoryId: number
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
@@ -334,7 +334,7 @@ export type ProductUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
@@ -347,7 +347,7 @@ export type ProductUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
@@ -360,7 +360,7 @@ export type ProductCreateManyInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   categoryId: number
 }
@@ -369,7 +369,7 @@ export type ProductUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
 }
 
@@ -378,7 +378,7 @@ export type ProductUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -482,10 +482,6 @@ export type ProductUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -494,8 +490,8 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type EnumSizeFieldUpdateOperationsInput = {
-  set?: $Enums.Size
+export type NullableEnumSizeFieldUpdateOperationsInput = {
+  set?: $Enums.Size | null
 }
 
 export type EnumColorFieldUpdateOperationsInput = {
@@ -548,7 +544,7 @@ export type ProductCreateWithoutCategoryInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   heroBanners?: Prisma.HeroBannerCreateNestedManyWithoutProductInput
@@ -560,7 +556,7 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   heroBanners?: Prisma.HeroBannerUncheckedCreateNestedManyWithoutProductInput
@@ -601,7 +597,7 @@ export type ProductScalarWhereInput = {
   name?: Prisma.StringFilter<"Product"> | string
   ImageURL?: Prisma.StringNullableFilter<"Product"> | string | null
   price?: Prisma.FloatFilter<"Product"> | number
-  size?: Prisma.EnumSizeFilter<"Product"> | $Enums.Size
+  size?: Prisma.EnumSizeNullableFilter<"Product"> | $Enums.Size | null
   color?: Prisma.EnumColorFilter<"Product"> | $Enums.Color
   categoryId?: Prisma.IntFilter<"Product"> | number
 }
@@ -610,7 +606,7 @@ export type ProductCreateWithoutFavoritesInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
   heroBanners?: Prisma.HeroBannerCreateNestedManyWithoutProductInput
@@ -622,7 +618,7 @@ export type ProductUncheckedCreateWithoutFavoritesInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   categoryId: number
   heroBanners?: Prisma.HeroBannerUncheckedCreateNestedManyWithoutProductInput
@@ -649,7 +645,7 @@ export type ProductUpdateWithoutFavoritesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
   heroBanners?: Prisma.HeroBannerUpdateManyWithoutProductNestedInput
@@ -661,7 +657,7 @@ export type ProductUncheckedUpdateWithoutFavoritesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   heroBanners?: Prisma.HeroBannerUncheckedUpdateManyWithoutProductNestedInput
@@ -672,7 +668,7 @@ export type ProductCreateWithoutHeroBannersInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
@@ -684,7 +680,7 @@ export type ProductUncheckedCreateWithoutHeroBannersInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   categoryId: number
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
@@ -711,7 +707,7 @@ export type ProductUpdateWithoutHeroBannersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
@@ -723,7 +719,7 @@ export type ProductUncheckedUpdateWithoutHeroBannersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
@@ -734,7 +730,7 @@ export type ProductCreateWithoutProductsOnCampaignsInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
@@ -746,7 +742,7 @@ export type ProductUncheckedCreateWithoutProductsOnCampaignsInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
   categoryId: number
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
@@ -773,7 +769,7 @@ export type ProductUpdateWithoutProductsOnCampaignsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
@@ -785,7 +781,7 @@ export type ProductUncheckedUpdateWithoutProductsOnCampaignsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
@@ -797,7 +793,7 @@ export type ProductCreateManyCategoryInput = {
   name: string
   ImageURL?: string | null
   price: number
-  size?: $Enums.Size
+  size?: $Enums.Size | null
   color?: $Enums.Color
 }
 
@@ -805,7 +801,7 @@ export type ProductUpdateWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
   heroBanners?: Prisma.HeroBannerUpdateManyWithoutProductNestedInput
@@ -817,7 +813,7 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
   heroBanners?: Prisma.HeroBannerUncheckedUpdateManyWithoutProductNestedInput
@@ -829,7 +825,7 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  size?: Prisma.EnumSizeFieldUpdateOperationsInput | $Enums.Size
+  size?: Prisma.NullableEnumSizeFieldUpdateOperationsInput | $Enums.Size | null
   color?: Prisma.EnumColorFieldUpdateOperationsInput | $Enums.Color
 }
 
@@ -957,7 +953,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     name: string
     ImageURL: string | null
     price: number
-    size: $Enums.Size
+    size: $Enums.Size | null
     color: $Enums.Color
     categoryId: number
   }, ExtArgs["result"]["product"]>

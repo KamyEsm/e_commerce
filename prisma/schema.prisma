@@ -36,12 +36,15 @@ enum Color {
 
 model Member {
   id          Int            @id @default(autoincrement())
-  firstname   String
-  lastname    String
-  Email       String         @unique
-  Address     String
-  hasshedPass String
+  name        String?
+  phonenumber String?
+  email       String?        @unique
+  Address     String?
+  hashedPass  String
   roles       RoleOnMember[]
+
+  phoneNumberVerification Boolean @default(false)
+  emailVerification       Boolean @default(false)
 
   favorites Favorite[]
 }
@@ -49,7 +52,7 @@ model Member {
 model Role {
   id      Int            @id @default(autoincrement())
   name    String
-  desc    String
+  desc    String?
   members RoleOnMember[]
 }
 
@@ -67,7 +70,7 @@ model RoleOnMember {
 model Category {
   id       Int       @id @default(autoincrement())
   name     String
-  desc     String
+  desc     String?
   iconURL  String
   products Product[]
 }
@@ -77,7 +80,7 @@ model Product {
   name                String
   ImageURL            String?
   price               Float
-  size                Size                  @default(medium)
+  size                Size?                 @default(medium)
   color               Color                 @default(red)
   category            Category              @relation(fields: [categoryId], references: [id])
   categoryId          Int
