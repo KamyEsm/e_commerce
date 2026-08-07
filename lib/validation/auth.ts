@@ -1,4 +1,4 @@
-import {toEnglishDigits} from "@/actions/smsSenderAction"
+import {toEnglishDigits} from "@/actions/otherAction"
 import z from "zod"
 
 export const emailSchema = z.email('The entered email is invalid.');

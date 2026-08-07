@@ -2,11 +2,11 @@
 
 import { prisma } from "@/lib/db";
 import z from "zod";
-import {emailSchema , phoneSchema , signUpFormSchema} from "@/lib/validation/auth"
+import {signUpFormSchema} from "@/lib/validation/auth"
 import zxcvbn from "zxcvbn";
-import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
-export default async function signUpAction(memberData: z.infer<typeof signUpFormSchema> ){
+export async function signUpAction(memberData: z.infer<typeof signUpFormSchema> ){
 
     const globalValidationRes = await signUpFormSchema.safeParseAsync(memberData);
     if(!globalValidationRes.success){
@@ -29,19 +29,32 @@ export default async function signUpAction(memberData: z.infer<typeof signUpForm
         if(passwordSecureRes < 3)
             return {success : false , error : "password is not secure"}
 
-        const hashedPass = crypto.createHash("bcrypt").update(memberData.password).digest("hex")
+        const hashedPass = await bcrypt.hash(password , 10)
+
+        const userRole = await prisma.role.findFirst({
+            where:{name:"user"}
+        })
 
         const dbresmember = await prisma.member.create({
             data:{
                 name,
                 ...(isPhone ? {phonenumber:contact } : {email:contact}),
                 hashedPass,
+                roles:{
+                    create:{
+                        role:{
+                            connect:{
+                                id:userRole!.id
+                            }
+                        }
+                    }
+                }
             }
         })
         return {success : true , message : "Registration was successful." , data : dbresmember}
     }
     catch (e){
         const errorM = e instanceof Error ? e.message : "An unknown error occurred";
-        return {success : false , error : errorM}
+        return { success : false , error : errorM }
     }
 }
