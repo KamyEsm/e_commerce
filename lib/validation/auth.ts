@@ -27,3 +27,12 @@ export const signUpFormSchema = z.object({
         .regex(/\d/, 'The password must contain at least one number.')
         .regex(/[@$!%*?&#]/, 'The password must contain at least one special character (such as @, #, or $).')
 });
+
+export const SessionPayloadSchema = z.object({
+    userId: z.int(),
+    role: z.enum(['admin', 'user']).default('user'),
+    name: z.string().optional(),
+    expiresAt: z.date(),
+})
+
+export type SessionPayload = z.infer<typeof SessionPayloadSchema>
