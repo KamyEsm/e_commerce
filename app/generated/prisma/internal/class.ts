@@ -17,8 +17,8 @@ import type * as Prisma from "./prismaNamespace"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.9.1",
-  "engineVersion": "e922089b7d7502aff4249d5da3420f6fa55fc6ad",
+  "clientVersion": "7.8.0",
+  "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Size {\n  Xsmall\n  small\n  medium\n  large\n  Xlarge\n  XXlarge\n  XXXlarge\n  XXXXlarge\n}\n\nenum Color {\n  red\n  yellow\n  blue\n  orange\n  black\n  white\n  purple\n  pink\n}\n\nmodel Member {\n  id          Int            @id @default(autoincrement())\n  name        String?\n  phonenumber String?\n  email       String?        @unique\n  Address     String?\n  hashedPass  String\n  roles       RoleOnMember[]\n\n  phoneNumberVerification Boolean @default(false)\n  emailVerification       Boolean @default(false)\n\n  favorites Favorite[]\n}\n\nmodel Role {\n  id      Int            @id @default(autoincrement())\n  name    String\n  desc    String?\n  members RoleOnMember[]\n}\n\nmodel RoleOnMember {\n  member   Member @relation(fields: [memberId], references: [id])\n  memberId Int\n  role     Role   @relation(fields: [roleId], references: [id])\n  roleId   Int\n\n  assignedAt DateTime @default(now())\n\n  @@id([memberId, roleId])\n}\n\nmodel Category {\n  id       Int       @id @default(autoincrement())\n  name     String\n  desc     String?\n  iconURL  String\n  products Product[]\n}\n\nmodel Product {\n  id                  Int                   @id @default(autoincrement())\n  name                String\n  ImageURL            String?\n  price               Float\n  size                Size?                 @default(medium)\n  color               Color                 @default(red)\n  category            Category              @relation(fields: [categoryId], references: [id])\n  categoryId          Int\n  favorites           Favorite[]\n  heroBanners         HeroBanner[]\n  productsOnCampaigns ProductsOnCampaigns[]\n}\n\nmodel Favorite {\n  product   Product @relation(fields: [productId], references: [id])\n  productId Int\n  member    Member  @relation(fields: [memberId], references: [id])\n  memberId  Int\n\n  @@id([memberId, productId])\n}\n\nmodel HeroBanner {\n  id           Int     @id @default(autoincrement())\n  title        String\n  imageURL     String\n  brandIconURL String?\n  product      Product @relation(fields: [productId], references: [id])\n  productId    Int\n  bgColor      String\n  textColor    String\n}\n\nmodel Campaign {\n  id                  Int                   @id @default(autoincrement())\n  title               String\n  startDate           DateTime\n  endDate             DateTime\n  priority            Int                   @default(0)\n  productsOnCampaigns ProductsOnCampaigns[]\n}\n\nmodel ProductsOnCampaigns {\n  product      Product  @relation(fields: [productId], references: [id])\n  campaign     Campaign @relation(fields: [campaignId], references: [id])\n  productId    Int\n  campaignId   Int\n  discountRate Int\n\n  @@id([productId, campaignId])\n}\n",
   "runtimeDataModel": {
@@ -82,7 +82,7 @@ export interface PrismaClientConstructor {
     LogOpts extends LogOptions<Options> = LogOptions<Options>,
     OmitOpts extends Prisma.PrismaClientOptions['omit'] = Options extends { omit: infer U } ? U : Prisma.PrismaClientOptions['omit'],
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
-  >(options: Prisma.PrismaClientConstructorArgs<Options>): PrismaClient<LogOpts, OmitOpts, ExtArgs>
+  >(options: Prisma.Subset<Options, Prisma.PrismaClientOptions> ): PrismaClient<LogOpts, OmitOpts, ExtArgs>
 }
 
 /**
@@ -103,7 +103,7 @@ export interface PrismaClientConstructor {
 
 export interface PrismaClient<
   in LogOpts extends Prisma.LogLevel = never,
-  in out OmitOpts extends Prisma.PrismaClientOptions['omit'] = Prisma.PrismaClientOptions['omit'],
+  in out OmitOpts extends Prisma.PrismaClientOptions['omit'] = undefined,
   in out ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
