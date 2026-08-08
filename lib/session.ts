@@ -1,10 +1,19 @@
 import 'server-only'
 import { SignJWT, jwtVerify } from 'jose'
 import { SessionPayload } from '@/lib/validation/auth'
-import {cons} from "effect/List";
+import Redis from "ioredis"
+import 'dotenv/config'
+import {cookies} from "next/headers";
+
+
+const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:2322');
 
 const secretKey = process.env.SESSION_SECRET
+if (!secretKey) {
+    throw new Error("SESSION_SECRET is not defined in environment variables")
+}
 const encodedKey = new TextEncoder().encode(secretKey)
+
 
 export async function encrypt(payload: SessionPayload) {
     return new SignJWT(payload)
@@ -27,18 +36,31 @@ export async function decrypt(session: string | undefined = '') {
 }
 
 
-import { cookies } from 'next/headers'
 
 export async function createSession(userId: number) {
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    const session = await encrypt({userId , role:"user" , expiresAt})
-    const cookieStore = await cookies()
+    const expire = Number(process.env.SESSION_EXPIRY_TIME_S || 604800)
+    const expireAt =  new Date(Date.now() + (expire * 1000))
 
+    const session = await encrypt({userId , role:"user" ,expiresAt : expireAt})
+
+    const redisKey = `session:userid:${userId}`
+
+    await redis.setex(redisKey , expire , session)
+
+    const cookieStore = await cookies()
     cookieStore.set('session', session, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        expires: expiresAt,
+        expires: expireAt,
         sameSite: 'lax',
         path: '/',
     })
+}
+
+
+export async function deleteSession(userId : number) {
+    await redis.del(`session:userid:${userId}`)
+
+    const cookieStore = await cookies()
+    cookieStore.delete('session')
 }

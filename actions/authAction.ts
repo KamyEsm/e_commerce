@@ -5,6 +5,7 @@ import z from "zod";
 import {signUpFormSchema} from "@/lib/validation/auth"
 import zxcvbn from "zxcvbn";
 import bcrypt from "bcryptjs";
+import {createSession} from "@/lib/session"
 
 export async function signUpAction(memberData: z.infer<typeof signUpFormSchema> ){
 
@@ -51,10 +52,27 @@ export async function signUpAction(memberData: z.infer<typeof signUpFormSchema> 
                 }
             }
         })
+
+        await createSession(dbresmember.id)
+
         return {success : true , message : "Registration was successful." , data : dbresmember}
     }
     catch (e){
         const errorM = e instanceof Error ? e.message : "An unknown error occurred";
         return { success : false , error : errorM }
     }
+}
+
+
+import { deleteSession } from '@/lib/session'
+import { redirect } from "next/navigation";
+
+export async function logout(userid : number) {
+    await deleteSession(userid)
+    redirect('/login')
+}
+
+
+export async function login(){
+
 }
